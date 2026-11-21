@@ -1,11 +1,9 @@
-
 name: Build Tiket Bus EXE
 
 on:
   push:
     branches:
       - main
-
   workflow_dispatch:
 
 jobs:
@@ -13,16 +11,16 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Mengambil Source Code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Compiler C++
+      - name: Setup MSVC
         uses: ilammy/msvc-dev-cmd@v1
 
-      - name: Build EXE
+      - name: Compile C++
         run: cl /EHsc /std:c++17 main.cpp /Fe:tiket.exe
 
-      - name: Upload File EXE
+      - name: Upload EXE
         uses: actions/upload-artifact@v4
         with:
           name: tiket-bus-exe
