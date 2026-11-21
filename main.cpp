@@ -1,18 +1,18 @@
-
 #include <iostream>
 #include <string>
+#include <limits>
 using namespace std;
 
-void tiket() {
+int main() {
     int pilih, jumlah, harga;
     string tujuan;
 
-    cout << "=== TIKET BUS ===" << endl;
+    cout << "===== PEMESANAN TIKET BUS =====" << endl;
     cout << "1. Malang - Surabaya Rp35000" << endl;
     cout << "2. Malang - Pasuruan Rp20000" << endl;
     cout << "3. Malang - Jombang Rp25000" << endl;
 
-    cout << "Pilih tujuan: ";
+    cout << "\nPilih tujuan (1-3): ";
     cin >> pilih;
 
     if (pilih == 1) {
@@ -28,26 +28,30 @@ void tiket() {
         harga = 25000;
     } 
     else {
-        cout << "Pilihan salah!";
-        return;
+        cout << "Pilihan tidak tersedia!" << endl;
+        harga = 0;
     }
 
-    cout << "Jumlah penumpang: ";
-    cin >> jumlah;
+    if (harga > 0) {
+        cout << "Masukkan jumlah penumpang: ";
+        cin >> jumlah;
 
-    if (jumlah <= 0) {
-        cout << "Jumlah tidak valid!";
-        return;
+        if (jumlah > 0) {
+            cout << "\n===== DETAIL PEMESANAN =====" << endl;
+            cout << "Tujuan: " << tujuan << endl;
+            cout << "Harga tiket: Rp" << harga << endl;
+            cout << "Jumlah penumpang: " << jumlah << endl;
+            cout << "Total pembayaran: Rp" << harga * jumlah << endl;
+            cout << "\nTerima kasih telah memesan tiket!" << endl;
+        } else {
+            cout << "Jumlah penumpang tidak valid!" << endl;
+        }
     }
 
-    cout << "\n=== STRUK TIKET ===" << endl;
-    cout << "Tujuan: " << tujuan << endl;
-    cout << "Harga: Rp" << harga << endl;
-    cout << "Penumpang: " << jumlah << endl;
-    cout << "Total: Rp" << harga * jumlah << endl;
-}
+    cout << "\nTekan ENTER untuk keluar...";
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.get();
 
-int main() {
-    tiket();
     return 0;
 }
